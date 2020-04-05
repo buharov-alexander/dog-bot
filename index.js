@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const telegram = require('./telegram');
+const bot = require('./bot')
 
 const app = express();
 const port = 8080;
@@ -8,15 +8,18 @@ const port = 8080;
 app.use(bodyParser.json());
 app.post('/', (req, res) => {
   const {body} = req;
-  console.log(body);
+  console.log("Message from bot:", {text: body.message.text, chat_id: body.message.from.chat});
   
   if (body.message) {
     const {text, chat} = body.message;
 
-    return telegram.sendMessage({
-      text: 'Hi!',
-      chat_id: chat.id
-    }).then(() => res.json({}));
+    if (text === '/image') {
+      return bot.sendRandomDogImage(chat.id)
+        .then(() => res.json({}));
+    } else {
+      return bot.sendText('Woof!', chat.id)
+        .then(() => res.json({}));
+    }
   }
 
   console.warn("Cannot handle message");
