@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bot = require('./bot')
+const bot = require('./src/bot')
 
 const app = express();
 const port = 8080;
