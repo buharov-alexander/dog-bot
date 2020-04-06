@@ -2,6 +2,7 @@
 Telegram bot
 Commands:
 - /images -  get random dog photo via [Dog API](https://dog.ceo/dog-api/)
+
 ![](https://github.com/buharov-alexander/dog-bot/blob/master/resources/screenshot.png)
 
 ## Build
